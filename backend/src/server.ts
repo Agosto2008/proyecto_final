@@ -2,6 +2,9 @@ import { env } from './config/env.js';
 import { logger } from './config/logger.js';
 import { pool, verifyConnection } from './database/pool.js';
 import { app } from './app.js';
+import 'dotenv/config'; // <-- Debe ser la PRIMERA línea
+
+
 
 async function main() {
   await verifyConnection();

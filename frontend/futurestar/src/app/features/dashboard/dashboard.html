@@ -1,0 +1,270 @@
+<div class="dashboard">
+
+  <header class="dashboard-header">
+
+    <div>
+      <span class="eyebrow">
+        FUTURESTAR
+      </span>
+
+      <h1>
+        Bienvenido, {{ nombreCompleto }}
+      </h1>
+
+      <p>
+        Tu talento puede abrir nuevas oportunidades.
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="logout-button"
+      (click)="cerrarSesion()"
+    >
+      Cerrar sesión
+    </button>
+
+  </header>
+
+
+  @if (cargando) {
+
+    <section class="loading-card">
+
+      <div class="loader"></div>
+
+      <p>
+        Cargando tu perfil...
+      </p>
+
+    </section>
+
+  }
+
+
+  @if (!cargando && error) {
+
+    <section class="error-card">
+
+      <h2>
+        No pudimos cargar tu perfil
+      </h2>
+
+      <p>
+        {{ error }}
+      </p>
+
+    </section>
+
+  }
+
+
+  @if (!cargando && perfil) {
+
+    <section class="profile-card">
+
+      <div class="avatar">
+        {{ usuario?.nombre?.charAt(0) }}
+      </div>
+
+      <div class="profile-main">
+
+        <span class="role">
+          JUGADOR
+        </span>
+
+        <h2>
+          {{ nombreDeportivo }}
+        </h2>
+
+        <p>
+          {{ nombreCompleto }}
+        </p>
+
+        <span class="status">
+          {{ estadoPerfil }}
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <section class="stats-grid">
+
+      <article class="stat-card">
+
+        <span class="stat-value">
+          {{ posicion }}
+        </span>
+
+        <span class="stat-label">
+          Posición principal
+        </span>
+
+      </article>
+
+
+      <article class="stat-card">
+
+        <span class="stat-value">
+          {{ cantidadHabilidades }}
+        </span>
+
+        <span class="stat-label">
+          Habilidades
+        </span>
+
+      </article>
+
+
+      <article class="stat-card">
+
+        <span class="stat-value">
+          {{ perfilPublico ? 'Público' : 'Privado' }}
+        </span>
+
+        <span class="stat-label">
+          Visibilidad
+        </span>
+
+      </article>
+
+    </section>
+
+
+    <section class="modules">
+
+      <div class="section-heading">
+
+        <span class="eyebrow">
+          MI CARRERA
+        </span>
+
+        <h2>
+          Desarrolla tu perfil deportivo
+        </h2>
+
+        <p>
+          Completa tu información para aumentar
+          tus posibilidades de encontrar oportunidades.
+        </p>
+
+      </div>
+
+
+      <div class="module-grid">
+
+        <article class="module-card">
+
+          <div class="module-icon">
+            👤
+          </div>
+
+          <h3>
+            Mi perfil
+          </h3>
+
+          <p>
+            Información deportiva y personal.
+          </p>
+
+        </article>
+
+
+        <article class="module-card">
+
+          <div class="module-icon">
+            🎥
+          </div>
+
+          <h3>
+            Mis videos
+          </h3>
+
+          <p>
+            Sube videos para mostrar tu talento.
+          </p>
+
+        </article>
+
+
+        <article class="module-card">
+
+          <div class="module-icon">
+            📄
+          </div>
+
+          <h3>
+            Documentos
+          </h3>
+
+          <p>
+            Gestiona tus documentos de verificación.
+          </p>
+
+        </article>
+
+
+        <article class="module-card">
+
+          <div class="module-icon">
+            🏃
+          </div>
+
+          <h3>
+            Evaluaciones
+          </h3>
+
+          <p>
+            Consulta tus pruebas deportivas.
+          </p>
+
+        </article>
+
+
+        <article class="module-card">
+
+          <div class="module-icon">
+            ⭐
+          </div>
+
+          <h3>
+            Oportunidades
+          </h3>
+
+          <p>
+            Encuentra oportunidades deportivas.
+          </p>
+
+        </article>
+
+
+        <article
+  class="module-card"
+  (click)="irAPerfil()"
+>
+
+
+
+          <div class="module-icon">
+            🤖
+          </div>
+
+          <h3>
+            Análisis IA
+          </h3>
+
+          <p>
+            Consulta el análisis de tu talento.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+  }
+
+</div>

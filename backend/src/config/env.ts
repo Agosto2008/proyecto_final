@@ -4,8 +4,8 @@ import { z } from 'zod';
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   PORT: z.coerce.number().int().positive().default(3000),
-    CORS_ORIGIN: z.string().url().default('http://localhost:4200'),
-      LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent']).default('info'),
+  CORS_ORIGIN: z.string().url().default('http://localhost:4200'),
+  LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent']).default('info'),
 
   DB_HOST: z.string().min(1),
   DB_PORT: z.coerce.number().int().positive().default(3306),
@@ -13,6 +13,10 @@ const envSchema = z.object({
   DB_PASSWORD: z.string().min(1),
   DB_NAME: z.string().min(1),
   DB_POOL_LIMIT: z.coerce.number().int().positive().default(10),
+
+  JWT_ACCESS_SECRET: z.string().min(32, 'debe tener al menos 32 caracteres'),
+  ACCESS_TOKEN_TTL_MINUTES: z.coerce.number().int().positive().default(15),
+  REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().positive().default(7),
 });
 
 const result = envSchema.safeParse(process.env);

@@ -15,6 +15,12 @@ export const pool = mysql.createPool({
   namedPlaceholders: true,
 });
 
+// Cada conexión nueva trabaja en UTC, sin importar la zona horaria del servidor MySQL.
+// Sin esto, las fechas que guarda el backend quedan desfasadas (en Guatemala, 6 horas).
+pool.pool.on('connection', (conexion) => {
+  conexion.query("SET time_zone = '+00:00'");
+});
+
 export async function verifyConnection(): Promise<void> {
   const [rows] = await pool.query(
     'SELECT DATABASE() AS base_datos, CURRENT_USER() AS usuario, VERSION() AS version'

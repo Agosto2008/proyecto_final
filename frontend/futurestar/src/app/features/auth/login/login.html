@@ -1,0 +1,234 @@
+<div class="login-page">
+
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+
+  <main class="login-container">
+
+    <section class="login-card">
+
+      <div class="brand">
+        <div class="brand-icon">
+          ★
+        </div>
+
+        <div>
+          <h1>FutureStar</h1>
+          <span>Descubre tu potencial</span>
+        </div>
+      </div>
+
+      <div class="login-header">
+        <p class="eyebrow">BIENVENIDO DE NUEVO</p>
+
+        <h2>Inicia sesión</h2>
+
+        <p>
+          Accede a tu cuenta y continúa construyendo
+          tu futuro deportivo.
+        </p>
+      </div>
+
+      @if (error) {
+        <div class="error-message">
+          <span>!</span>
+          <p>{{ error }}</p>
+        </div>
+      }
+
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="iniciarSesion()"
+        novalidate
+      >
+
+        <div class="form-group">
+
+          <label for="email">
+            Correo electrónico
+          </label>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon">
+              @
+            </span>
+
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="correo@ejemplo.com"
+              autocomplete="email"
+            />
+
+          </div>
+
+          @if (email.invalid && email.touched) {
+
+            @if (email.errors?.['required']) {
+              <small>
+                El correo electrónico es obligatorio.
+              </small>
+            }
+
+            @if (email.errors?.['email']) {
+              <small>
+                Introduce un correo electrónico válido.
+              </small>
+            }
+
+          }
+
+        </div>
+
+
+        <div class="form-group">
+
+          <div class="label-row">
+
+            <label for="password">
+              Contraseña
+            </label>
+
+            <a routerLink="/recuperar-contrasena">
+              ¿Olvidaste tu contraseña?
+            </a>
+
+          </div>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon">
+              •
+            </span>
+
+            <input
+              id="password"
+              [type]="mostrarPassword ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="Tu contraseña"
+              autocomplete="current-password"
+            />
+
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePassword()"
+              [attr.aria-label]="
+                mostrarPassword
+                  ? 'Ocultar contraseña'
+                  : 'Mostrar contraseña'
+              "
+            >
+              {{ mostrarPassword ? '◉' : '○' }}
+            </button>
+
+          </div>
+
+          @if (password.invalid && password.touched) {
+
+            @if (password.errors?.['required']) {
+              <small>
+                La contraseña es obligatoria.
+              </small>
+            }
+
+            @if (password.errors?.['minlength']) {
+              <small>
+                La contraseña debe tener al menos 8 caracteres.
+              </small>
+            }
+
+          }
+
+        </div>
+
+
+        <button
+          class="login-button"
+          type="submit"
+          [disabled]="cargando"
+        >
+
+          @if (cargando) {
+            <span class="spinner"></span>
+            Iniciando sesión...
+          } @else {
+            Iniciar sesión
+            <span>→</span>
+          }
+
+        </button>
+
+      </form>
+
+
+      <div class="divider">
+        <span>o</span>
+      </div>
+
+
+      <p class="register-text">
+
+        ¿Todavía no tienes una cuenta?
+
+        <a routerLink="/registro">
+          Crear cuenta
+        </a>
+
+      </p>
+
+
+      <a routerLink="/" class="back-home">
+        ← Volver al inicio
+      </a>
+
+    </section>
+
+
+    <aside class="login-side">
+
+      <div class="side-content">
+
+        <div class="side-badge">
+          <span></span>
+          PLATAFORMA DE TALENTO DEPORTIVO
+        </div>
+
+        <h2>
+          Tu talento merece
+          <strong>ser descubierto.</strong>
+        </h2>
+
+        <p>
+          FutureStar conecta jugadores con cazatalentos
+          y organizaciones deportivas de todo el mundo.
+        </p>
+
+        <div class="side-features">
+
+          <div>
+            <span>✓</span>
+            Perfil deportivo profesional
+          </div>
+
+          <div>
+            <span>✓</span>
+            Análisis inteligente con IA
+          </div>
+
+          <div>
+            <span>✓</span>
+            Oportunidades deportivas
+          </div>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+  </main>
+
+</div>

@@ -1,14 +1,28 @@
-import type { NextFunction, Request, RequestHandler, Response } from 'express';
+import type {
+  NextFunction,
+  Request,
+  RequestHandler,
+  Response,
+} from 'express';
 
 /**
- * Envuelve un controlador async para que cualquier error llegue al errorHandler.
- * Express 5 ya lo hace solo, pero esto mantiene el código compatible con Express 4
- * y deja explícita la intención.
+ * Envuelve funciones async para que los errores
+ * sean enviados automáticamente al middleware
+ * de manejo de errores.
  */
 export function asyncHandler(
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>,
+  fn: (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => Promise<unknown>
 ): RequestHandler {
-  return (req, res, next) => {
-    fn(req, res, next).catch(next);
+  return (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): void => {
+    Promise.resolve(fn(req, res, next)).catch(next);
   };
 }
+
