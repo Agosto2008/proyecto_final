@@ -1,15 +1,14 @@
 -- =====================================================================
--- FutureStar - futurestar_db (MySQL 8.0.16+)
+-- FutureStar - futurestar_db_in5bm (MySQL 8.0.16+)
 -- Script completo: 35 tablas, relaciones, restricciones, indices,
 -- vista publica, datos iniciales, datos de prueba y consultas de prueba.
 -- Orden: MODULO 1..8 -> VISTAS -> SEMILLAS -> DATOS DE PRUEBA -> VERIFICACION
 -- =====================================================================
 
 -- Para reconstruir desde cero, descomenta la siguiente linea:
--- DROP DATABASE IF EXISTS futurestar_db;
+-- DROP DATABASE IF EXISTS futurestar_db_in5bm;
 
 CREATE DATABASE IF NOT EXISTS futurestar_db_in5bm
-
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_0900_ai_ci;
 
@@ -824,12 +823,12 @@ INSERT INTO postulaciones (id, jugador_id, oportunidad_id, mensaje, estado) VALU
 -- 1) Deben existir 35 tablas (la vista no cuenta)
 SELECT COUNT(*) AS total_tablas
 FROM information_schema.tables
-WHERE table_schema = 'futurestar_db' AND table_type = 'BASE TABLE';
+WHERE table_schema = 'futurestar_db_in5bm' AND table_type = 'BASE TABLE';
 
 -- 2) Cantidad de claves foraneas
 SELECT COUNT(*) AS total_fks
 FROM information_schema.table_constraints
-WHERE constraint_schema = 'futurestar_db' AND constraint_type = 'FOREIGN KEY';
+WHERE constraint_schema = 'futurestar_db_in5bm' AND constraint_type = 'FOREIGN KEY';
 
 -- 3) Usuarios con sus roles
 SELECT u.email, r.nombre AS rol
