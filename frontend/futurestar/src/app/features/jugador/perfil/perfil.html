@@ -1,350 +1,117 @@
-<div class="perfil-page">
-
-  <header class="perfil-header">
-
-    <div>
-      <span class="eyebrow">
-        FUTURESTAR
-      </span>
-
-      <h1>
-        Mi perfil deportivo
-      </h1>
-
-      <p>
-        Completa tu información para que organizaciones
-        y cazatalentos puedan conocer tu talento.
-      </p>
+<div class="jugador-dashboard">
+  <!-- Encabezado con banner del perfil -->
+  <header class="profile-header">
+    <div class="header-overlay"></div>
+    <div class="header-content">
+      <div class="avatar-wrapper">
+        <span class="avatar-icon">⚽</span>
+      </div>
+      <div class="user-info">
+        <h2>Mi Perfil Deportivo</h2>
+        <p class="subtitle">Gestiona tu talento, estadísticas y visualización para reclutadores.</p>
+      </div>
     </div>
-
-    <button
-      type="button"
-      class="back-button"
-      (click)="volver()"
-    >
-      ← Volver
-    </button>
-
   </header>
 
-
-  @if (cargando) {
-
-    <section class="loading-card">
-
-      <div class="loader"></div>
-
-      <p>
-        Cargando perfil...
-      </p>
-
-    </section>
-
-  }
-
-
-  @if (!cargando) {
-
-    <form
-      class="profile-form"
-      [formGroup]="perfilForm"
-      (ngSubmit)="guardarPerfil()"
-    >
-
-      <section class="form-card">
-
-        <div class="section-title">
-
-          <span class="section-number">
-            01
-          </span>
-
-          <div>
-            <h2>
-              Información deportiva
-            </h2>
-
-            <p>
-              Información principal sobre tu carrera deportiva.
-            </p>
-          </div>
-
-        </div>
-
-
-        <div class="form-grid">
-
-          <div class="field full">
-
-            <label for="nombre_deportivo">
-              Nombre deportivo
-            </label>
-
-            <input
-              id="nombre_deportivo"
-              type="text"
-              formControlName="nombre_deportivo"
-              placeholder="Ej. David Lacayo"
-            />
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="posicion_principal">
-              Posición principal
-            </label>
-
-            <input
-              id="posicion_principal"
-              type="text"
-              formControlName="posicion_principal"
-              placeholder="Ej. Delantero"
-            />
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="posicion_secundaria">
-              Posición secundaria
-            </label>
-
-            <input
-              id="posicion_secundaria"
-              type="text"
-              formControlName="posicion_secundaria"
-              placeholder="Ej. Extremo"
-            />
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="categoria">
-              Categoría
-            </label>
-
-            <input
-              id="categoria"
-              type="text"
-              formControlName="categoria"
-              placeholder="Ej. Sub-18"
-            />
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="pierna_dominante">
-              Pierna dominante
-            </label>
-
-            <select
-              id="pierna_dominante"
-              formControlName="pierna_dominante"
-            >
-
-              <option [ngValue]="null">
-                Selecciona una opción
-              </option>
-
-              <option value="IZQUIERDA">
-                Izquierda
-              </option>
-
-              <option value="DERECHA">
-                Derecha
-              </option>
-
-              <option value="AMBAS">
-                Ambas
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="altura_cm">
-              Altura (cm)
-            </label>
-
-            <input
-              id="altura_cm"
-              type="number"
-              formControlName="altura_cm"
-              placeholder="Ej. 175"
-            />
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="peso_kg">
-              Peso (kg)
-            </label>
-
-            <input
-              id="peso_kg"
-              type="number"
-              formControlName="peso_kg"
-              placeholder="Ej. 70"
-            />
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <section class="form-card">
-
-        <div class="section-title">
-
-          <span class="section-number">
-            02
-          </span>
-
-          <div>
-            <h2>
-              Experiencia
-            </h2>
-
-            <p>
-              Cuéntales a las organizaciones sobre tu trayectoria.
-            </p>
-          </div>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="experiencia">
-            Experiencia deportiva
-          </label>
-
-          <textarea
-            id="experiencia"
-            formControlName="experiencia"
-            rows="5"
-            placeholder="Describe tus equipos, torneos, años de experiencia y logros..."
-          ></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="descripcion">
-            Sobre mí
-          </label>
-
-          <textarea
-            id="descripcion"
-            formControlName="descripcion"
-            rows="5"
-            placeholder="Cuéntanos sobre tu estilo de juego, objetivos y características..."
-          ></textarea>
-
-        </div>
-
-      </section>
-
-
-      <section class="form-card visibility-card">
-
-        <div>
-
-          <span class="section-number">
-            03
-          </span>
-
-          <h2>
-            Visibilidad del perfil
-          </h2>
-
-          <p>
-            Permite que cazatalentos y organizaciones
-            encuentren tu perfil en FutureStar.
-          </p>
-
-        </div>
-
-
-        <label class="switch-row">
-
-          <input
-            type="checkbox"
-            formControlName="perfil_publico"
-          />
-
-          <span class="switch"></span>
-
-          <span class="switch-text">
-            Hacer mi perfil público
-          </span>
-
-        </label>
-
-      </section>
-
-
-      @if (mensaje) {
-
-        <div class="success-message">
-          ✓ {{ mensaje }}
-        </div>
-
-      }
-
-
-      @if (error) {
-
-        <div class="error-message">
-          {{ error }}
-        </div>
-
-      }
-
-
-      <div class="form-actions">
-
-        <button
-          type="button"
-          class="secondary-button"
-          (click)="volver()"
-        >
-          Cancelar
-        </button>
-
-        <button
-          type="submit"
-          class="primary-button"
-          [disabled]="guardando"
-        >
-
-          @if (guardando) {
-            Guardando...
-          } @else {
-            Guardar perfil
-          }
-
-        </button>
-
+  <!-- Grilla de Secciones -->
+  <main class="modules-grid">
+
+    <!-- Card: Mis Habilidades -->
+    <div class="card card-active">
+      <div class="card-header">
+        <div class="icon-box">💪</div>
+        <span class="status-tag status-available">Disponible</span>
       </div>
+      <div class="card-body">
+        <h3>Mis habilidades</h3>
+        <p>Define tu nivel técnico, físico y táctico en cada habilidad.</p>
+      </div>
+      <div class="card-footer">
+        <button class="btn-primary" [routerLink]="['/jugador/habilidades']">Gestionar Habilidades →</button>
+      </div>
+    </div>
 
-    </form>
+    <!-- Card: Mis Videos -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-box">📹</div>
+        <span class="status-tag status-soon">Próximamente</span>
+      </div>
+      <div class="card-body">
+        <h3>Mis videos</h3>
+        <p>Sube jugadas destacadas y partidos completos para mostrar tu talento.</p>
+      </div>
+      <div class="card-footer">
+        <button class="btn-disabled" disabled>Subir Videos</button>
+      </div>
+    </div>
 
-  }
+    <!-- Card: Documentos -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-box">📄</div>
+        <span class="status-tag status-soon">Próximamente</span>
+      </div>
+      <div class="card-body">
+        <h3>Documentos</h3>
+        <p>Gestiona tus documentos oficiales y fichas de verificación.</p>
+      </div>
+      <div class="card-footer">
+        <button class="btn-disabled" disabled>Ver Documentos</button>
+      </div>
+    </div>
 
+    <!-- Card: Evaluaciones -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-box">🏃</div>
+        <span class="status-tag status-soon">Próximamente</span>
+      </div>
+      <div class="card-body">
+        <h3>Evaluaciones</h3>
+        <p>Consulta el historial de tus pruebas físicas y rendimiento táctico.</p>
+      </div>
+      <div class="card-footer">
+        <button class="btn-disabled" disabled>Ver Evaluaciones</button>
+      </div>
+    </div>
+
+    <!-- Card: Oportunidades -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon-box">⭐</div>
+        <span class="status-tag status-soon">Próximamente</span>
+      </div>
+      <div class="card-body">
+        <h3>Oportunidades</h3>
+        <p>Encuentra visorías, convocatorias y pruebas con clubes deportivos.</p>
+      </div>
+      <div class="card-footer">
+        <button class="btn-disabled" disabled>Explorar</button>
+      </div>
+    </div>
+
+    <div class="user-info">
+  <h2>{{ usuario ? (usuario.nombre + ' ' + usuario.apellido) : 'Mi Perfil Deportivo' }}</h2>
+  <p class="subtitle">
+    {{ perfil?.posicion_principal || 'Jugador' }} • {{ perfil?.categoria || 'Sin Categoría' }}
+  </p>
+</div>
+
+    <!-- Card: Análisis IA -->
+    <div class="card card-ia">
+      <div class="card-header">
+        <div class="icon-box icon-ia">🤖</div>
+        <span class="status-tag status-soon">Próximamente</span>
+      </div>
+      <div class="card-body">
+        <h3>Análisis IA</h3>
+        <p>Obtén retroalimentación y proyecciones de tu talento mediante Inteligencia Artificial.</p>
+      </div>
+      <div class="card-footer">
+        <button class="btn-disabled" disabled>Consultar IA</button>
+      </div>
+    </div>
+
+  </main>
 </div>

@@ -1,0 +1,75 @@
+<div class="habilidades-container">
+  <header class="page-header">
+    <a [routerLink]="['/jugador/perfil']" class="btn-back">← Volver al Perfil</a>
+    <h1>Mis Habilidades Deportivas</h1>
+    <p>Selecciona y ajusta tu nivel táctico, técnico y físico para llamar la atención de cazatalentos.</p>
+  </header>
+
+  <div *ngIf="mensajeExito" class="alert alert-success">
+    ✅ {{ mensajeExito }}
+  </div>
+  <div *ngIf="mensajeError" class="alert alert-danger">
+    ⚠️ {{ mensajeError }}
+  </div>
+
+  <div *ngIf="cargando" class="loading-spinner">
+    <p>Cargando habilidades...</p>
+  </div>
+
+  <form *ngIf="!cargando" (ngSubmit)="guardar()">
+    <div *ngFor="let cat of categorias" class="categoria-section">
+      <h2 class="categoria-title">{{ cat }}</h2>
+
+      <div class="skills-grid">
+        <div *ngFor="let item of habilidadesPorCategoria[cat]" class="skill-card" [class.active]="item.seleccionada">
+          
+          <div class="skill-header">
+            <label class="checkbox-container">
+              <input type="checkbox" [(ngModel)]="item.seleccionada" [name]="'sel_' + item.id">
+              <span class="skill-name">{{ item.nombre }}</span>
+            </label>
+          </div>
+
+          <p class="skill-desc" *ngIf="item.descripcion">{{ item.descripcion }}</p>
+
+          <div class="skill-controls" *ngIf="item.seleccionada">
+            <div class="control-group">
+              <div class="label-badge">
+                <label>Nivel:</label>
+                <span class="value-highlight">{{ item.nivel }} / 100</span>
+              </div>
+              <input 
+                type="range" 
+                min="1" 
+                max="100" 
+                [(ngModel)]="item.nivel" 
+                [name]="'lvl_' + item.id"
+                class="range-slider"
+              >
+            </div>
+
+            <div class="control-group">
+              <label>Años de Experiencia:</label>
+              <input 
+                type="number" 
+                min="0" 
+                max="30" 
+                [(ngModel)]="item.experiencia_anios" 
+                [name]="'exp_' + item.id"
+                class="input-number"
+                placeholder="Ej. 2"
+              >
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="actions-bar">
+      <button type="submit" class="btn-save" [disabled]="guardando">
+        {{ guardando ? 'Guardando...' : 'Guardar Habilidades' }}
+      </button>
+    </div>
+  </form>
+</div>

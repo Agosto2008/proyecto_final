@@ -40,3 +40,13 @@ export interface PerfilJugador {
 export interface JugadorMeResponse {
   data: PerfilJugador;
 }
+
+export interface HabilidadGuardarItem {
+  habilidad_id: number;
+  nivel: number;
+  experiencia_anios: number | null;
+}
+
+export interface GuardarHabilidadesRequest {
+  habilidades: HabilidadGuardarItem[];
+}

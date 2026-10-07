@@ -1,0 +1,106 @@
+.registro-container {
+  grid-template-columns: 1.15fr 0.85fr;
+}
+
+.registro-container .login-card {
+  padding: 44px 52px;
+}
+
+.registro-container .brand {
+  margin-bottom: 32px;
+}
+
+.fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.input-wrapper input.sin-icono,
+.input-wrapper select.sin-icono {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.input-wrapper select {
+  width: 100%;
+  padding: 15px 16px;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  outline: none;
+  background: rgba(2, 6, 23, 0.65);
+  color: white;
+  font: inherit;
+  transition: 0.2s;
+}
+
+.input-wrapper select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.input-wrapper select option {
+  background: #0f172a;
+  color: white;
+}
+
+.input-wrapper input[type='date'] {
+  color-scheme: dark;
+}
+
+.rol-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.rol-option {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  text-align: left;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  background: rgba(2, 6, 23, 0.65);
+  color: #e2e8f0;
+  font: inherit;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.rol-option small {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.rol-option:hover {
+  border-color: #334155;
+}
+
+.rol-option.activo {
+  border-color: #2563eb;
+  background: rgba(37, 99, 235, 0.14);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.rol-option.activo small {
+  color: #7dd3fc;
+}
+
+@media (max-width: 850px) {
+  .registro-container {
+    grid-template-columns: 1fr;
+  }
+
+  .registro-container .login-card {
+    padding: 36px 26px;
+  }
+}
+
+@media (max-width: 560px) {
+  .fila,
+  .rol-selector {
+    grid-template-columns: 1fr;
+  }
+}

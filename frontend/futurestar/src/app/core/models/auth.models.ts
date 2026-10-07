@@ -28,3 +28,17 @@ export interface RefreshResponse {
 export interface MeResponse {
   usuario: Usuario;
 }
+
+export type RolRegistro = 'JUGADOR' | 'CAZATALENTOS';
+
+export interface RegistroRequest {
+  nombre: string;
+  apellido: string;
+  email: string;
+  password: string;
+  telefono?: string;
+  fecha_nacimiento: string;
+  pais_id: number;
+  ciudad?: string;
+  rol: RolRegistro;
+}

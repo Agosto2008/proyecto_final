@@ -41,20 +41,34 @@ export const routes: Routes = [
   // DASHBOARD JUGADOR
   // ==========================
 
- {
-  path: 'jugador/perfil',
-  canActivate: [
-    authGuard,
-    roleGuard,
-  ],
-  data: {
-    roles: ['JUGADOR'],
+  {
+    path: 'jugador',
+    canActivate: [authGuard, roleGuard],
+    data: {
+      roles: ['JUGADOR'],
+    },
+    loadComponent: () =>
+      import('./features/dashboard/dashboard').then(
+        (m) => m.Dashboard,
+      ),
   },
-  loadComponent: () =>
-    import('./features/jugador/perfil/perfil').then(
-      (m) => m.Perfil,
-    ),
-},
+
+{
+    path: 'jugador/perfil',
+    loadComponent: () =>
+      import('./features/jugador/perfil/perfil').then(
+        (m) => m.PerfilComponent
+      ),
+  },
+  {
+    path: 'jugador/habilidades',
+    loadComponent: () =>
+      import('./features/jugador/habilidades/habilidades').then(
+        (m) => m.HabilidadesComponent
+      ),
+  },
+
+
 
 
   // ==========================

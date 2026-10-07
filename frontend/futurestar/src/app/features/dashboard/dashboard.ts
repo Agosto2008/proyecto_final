@@ -8,10 +8,7 @@ import {
   CommonModule,
 } from '@angular/common';
 
-import {
-  Router,
-} from '@angular/router';
-
+import { Router, RouterLink } from '@angular/router';
 import {
   AuthService,
 } from '../../core/services/auth.service';
@@ -149,11 +146,6 @@ export class Dashboard implements OnInit {
     );
   }
 
-  irAPerfil(): void {
-  this.router.navigate([
-    '/jugador/perfil',
-  ]);
-}
 
   get cantidadHabilidades(): number {
 

@@ -12,6 +12,7 @@ import {
 } from './api.service';
 
 import {
+  GuardarHabilidadesRequest,
   JugadorMeResponse,
   PerfilJugador,
 } from '../models/jugador.models';
@@ -35,6 +36,15 @@ export class JugadoresService {
   ): Observable<JugadorMeResponse> {
     return this.api.put<JugadorMeResponse>(
       '/jugadores/me',
+      datos,
+    );
+  }
+
+    guardarHabilidades(
+    datos: GuardarHabilidadesRequest,
+  ): Observable<unknown> {
+    return this.api.put<unknown>(
+      '/jugadores/me/habilidades',
       datos,
     );
   }

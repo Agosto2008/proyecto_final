@@ -20,9 +20,9 @@ import {
 import {
   LoginRequest,
   LoginResponse,
+  RegistroRequest,
   Usuario,
 } from '../models/auth.models';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -104,6 +104,16 @@ export class AuthService {
           );
         }),
       );
+  }
+
+    registro(datos: RegistroRequest): Observable<unknown> {
+    return this.http.post<unknown>(
+      `${this.API_URL}/registro`,
+      datos,
+      {
+        withCredentials: true,
+      },
+    );
   }
 
   logout(): Observable<void> {
